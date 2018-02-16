@@ -12,7 +12,7 @@ export default {
         component: 'src/containers/Home',
       },
       {
-        path: '/about',
+        path: '/aboutTEST',
         component: 'src/containers/About',
       },
       {
