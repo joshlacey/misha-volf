@@ -8,7 +8,6 @@ export default {
     title: 'React Static',
   }),
   getRoutes: async () => {
-    const { data: posts } = await axios.get('https://jsonplaceholder.typicode.com/posts')
     return [
       {
         path: '/',
@@ -18,7 +17,7 @@ export default {
         path: '/category_1',
         component: 'src/containers/About',
         children: category_1.map( (content, index) => ({
-          path: `/work_${index+1}`,
+          path: content.path,
           component: 'src/containers/Page',
           getData: () => ({content})
         }))
@@ -27,7 +26,7 @@ export default {
         path: '/category_2',
         component: 'src/containers/About',
         children: category_2.map( (content, index) => ({
-          path: `/work_${index+1}`,
+          path: content.path,
           component: 'src/containers/Page',
           getData: () => ({content})
         }))
@@ -37,22 +36,8 @@ export default {
         children: category_3.map( (content, index) => ({
           path: content.path,
           component: 'src/containers/Page',
-          getData: () => ({content: content.data})
+          getData: () => ({ content })
         }))
-      },
-      {
-        path: '/blog',
-        component: 'src/containers/Blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          component: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
       },
       {
         is404: true,

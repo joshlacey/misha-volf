@@ -9,7 +9,8 @@ import './app.css'
 
 const App = () => (
   <Router>
-    <div>
+    <div className="wrapper">
+      <div className="banner">Misha Volf</div>
       <Nav />
       <div className="content">
         <Routes />

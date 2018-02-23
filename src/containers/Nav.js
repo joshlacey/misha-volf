@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-static'
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { category_1_menu } from '../../pageData/category_1'
+import { category_2_menu } from '../../pageData/category_2'
 import { category_3_menu } from '../../pageData/category_3'
-import {
-  Link as ReactRouterLink,
-} from 'react-router-dom'
 
 const navItems = [
   {
     category: 'Category_1',
-    menu: category_3_menu,
+    menu: category_1_menu,
   },
   {
     category: 'Category_2',
-    menu: category_3_menu,
+    menu: category_2_menu,
   },
   {
     category: 'Category_3',
@@ -23,10 +23,15 @@ const navItems = [
 class Nav extends React.Component {
   constructor () {
     super()
+    const locationArr = location.pathname.split('/')
+    const currentWork = locationArr.pop()
+    const category = locationArr.pop()
     this.state = {
       collapsed: false,
-      currentCategory: navItems[0].category,
+      currentCategory: category,
       clickedCategory: null,
+      currentWork,
+      toggle: true,
     }
   }
 
@@ -37,12 +42,13 @@ class Nav extends React.Component {
     })
   }
 
-  handleOtherClick = e => {
+  handleMenuClick = e => {
     const { category } = e.target.dataset
     this.setState({
       currentCategory: category,
-      collapsed: !this.state.collapsed,
+      collapsed: true,
       clickedCategory: null,
+      toggle: !this.state.toggle,
     })
   }
 
@@ -54,36 +60,40 @@ class Nav extends React.Component {
   }
 
   renderNav = () => {
-    let offset = -80
-    const { currentCategory, collapsed, clickedCategory } = this.state
+    let offset = -100
+    const { currentCategory, collapsed, clickedCategory, currentWork } = this.state
     return navItems.map(item => {
       offset += 100
       const pathCategory = item.category.toLowerCase()
-      const active = clickedCategory === item.category ? 'active' : ''
-      const links = item.menu.map(menuItem => (
-        <li key={menuItem.path}>
-          <ReactRouterLink
-            data-category={item.category}
-            onClick={this.handleOtherClick}
-            key={menuItem.path}
-            to={`/${pathCategory}/${menuItem.path}`}
-          >
-            {menuItem.path}
-          </ReactRouterLink>
-        </li>
-      ))
-      const menuStyle = active ? {width: '300px', height: '200px'} : {width: '300px'}
+      const active = clickedCategory === pathCategory ? 'active' : ''
+      const links = item.menu.map(menuItem => {
+        if (currentCategory === pathCategory && menuItem.path === currentWork) {
+          return null
+        }
+        return (
+          <li key={menuItem.path}>
+            <ReactRouterLink
+              data-category={pathCategory}
+              onClick={this.handleMenuClick}
+              to={`/${pathCategory}/${menuItem.path}`}
+            >
+              {menuItem.path}
+            </ReactRouterLink>
+          </li>
+        )
+      })
+      const menuStyle = active ? { width: '300px', height: '200px' } : { width: '300px' }
       return (
-        <div key={item.category}>
+        <div key={pathCategory}>
           <div className="tabs">
             <div
               onClick={this.handleCategoryClick}
-              data-category={item.category}
+              data-category={pathCategory}
               style={
                 collapsed
-                  ? currentCategory === item.category
-                    ? { left: '20px', opacity: '1' }
-                    : { left: '20px', opacity: '0' }
+                  ? currentCategory === pathCategory
+                    ? { left: '0px', opacity: '1' }
+                    : { left: '0px', opacity: '0' }
                   : { left: `${offset}px`, opacity: '1' }
               }
               className={`nav-item ${active}`}
@@ -92,9 +102,7 @@ class Nav extends React.Component {
             </div>
           </div>
           <div style={menuStyle} className="tab__content">
-            <ul className="links">
-              {links}
-            </ul>
+            <ul className="links">{links}</ul>
           </div>
         </div>
       )
@@ -103,18 +111,22 @@ class Nav extends React.Component {
 
   render () {
     const { collapsed } = this.state
-    const rotateStyle = collapsed ? {left: '120px', transform: 'rotate(0deg)'} : {left: '320px', transform: 'rotate(-180deg)'}
+    const rotateStyle = collapsed
+      ? { left: '120px', transform: 'rotate(0deg)' }
+      : { left: '320px', transform: 'rotate(-180deg)' }
     return (
-      <div>
+      <div className="nav-wrapper">
         {this.renderNav()}
-        <svg viewBox="0 0 100 100" style={rotateStyle} onClick={this.handleClick} class="svg nav-item collapse-button" height="30" width="30">
-            <polygon points="43,30 43,70 85,49" class="triangle" stroke-linecap="round"/>
-        </svg>
-        {/* <button
+        <svg
+          viewBox="0 0 100 100"
+          style={rotateStyle}
           onClick={this.handleClick}
-          style={collapsed ? { left: '120px', opacity: '1' } : { left: '320px', opacity: '1' }}
-          className="nav-item collapse-button"
-        /> */}
+          className="svg nav-item collapse-button"
+          height="30"
+          width="30"
+        >
+          <polygon points="43,30 43,70 85,49" className="triangle" />
+        </svg>
       </div>
     )
   }

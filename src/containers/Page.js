@@ -7,7 +7,8 @@ function createMarkup (data) {
 
 export default withRouteData( ({ content }) => {
   return (<div className="content-area">
-    {content.map((item, index) => {
+    {content.path}
+    {content.data.map((item, index) => {
       if (item.type === 'image') {
         return (
           <div key={index}>
@@ -21,7 +22,7 @@ export default withRouteData( ({ content }) => {
       } else if (item.type === 'text') {
         return <p key={index}>{item.text}</p>
       } else if (item.type === 'video') {
-        return <div key={index} dangerouslySetInnerHTML={createMarkup(item.embed_src)} />
+        return <div key={index} className="video" dangerouslySetInnerHTML={createMarkup(item.embed_src)} />
       }
     })}
   </div>)
