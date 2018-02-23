@@ -58,7 +58,7 @@ class Nav extends React.Component {
       const pathCategory = item.category.toLowerCase()
       const active = clickedCategory === item.category ? 'active' : ''
       const links = item.menu.map(menuItem => (
-        <li>
+        <li key={menuItem.path}>
           <Link
             data-category={item.category}
             onClick={this.handleOtherClick}
