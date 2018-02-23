@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-static'
 import { category_3_menu } from '../../pageData/category_3'
+import {
+  Link as ReactRouterLink,
+} from 'react-router-dom'
 
 const navItems = [
   {
@@ -59,14 +62,14 @@ class Nav extends React.Component {
       const active = clickedCategory === item.category ? 'active' : ''
       const links = item.menu.map(menuItem => (
         <li key={menuItem.path}>
-          <Link
+          <ReactRouterLink
             data-category={item.category}
             onClick={this.handleOtherClick}
             key={menuItem.path}
             to={`/${pathCategory}/${menuItem.path}`}
           >
             {menuItem.path}
-          </Link>
+          </ReactRouterLink>
         </li>
       ))
       const menuStyle = active ? {width: '300px', height: '200px'} : {width: '300px'}
