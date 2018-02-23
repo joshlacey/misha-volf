@@ -2,6 +2,7 @@ import axios from 'axios'
 import { category_1 } from './pageData/category_1'
 import { category_2 } from './pageData/category_2'
 import { category_3 } from './pageData/category_3'
+import { home } from './pageData/home'
 
 export default {
   getSiteData: () => ({
@@ -12,6 +13,7 @@ export default {
       {
         path: '/',
         component: 'src/containers/Home',
+        getData: () => ({ content: home }),
       },
       {
         path: '/category_1',

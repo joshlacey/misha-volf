@@ -24,7 +24,7 @@ class Nav extends React.Component {
   constructor () {
     super()
     this.state = {
-      collapsed: false,
+      collapsed: true,
       currentCategory: null,
       clickedCategory: null,
       currentWork: null,
@@ -35,7 +35,7 @@ class Nav extends React.Component {
   componentDidMount = () => {
     const locationArr = window.location.pathname.split('/')
     const currentWork = locationArr.pop()
-    const category = locationArr.pop()
+    const category = locationArr.pop() || navItems[0].category.toLowerCase()
 
     this.setState({
       currentCategory: category,
@@ -62,8 +62,9 @@ class Nav extends React.Component {
 
   handleCategoryClick = e => {
     const { category } = e.target.dataset
+    const { clickedCategory } = this.state
     this.setState({
-      clickedCategory: category,
+      clickedCategory: !clickedCategory ? category : (clickedCategory !== category) ? category : null
     })
   }
 
@@ -91,6 +92,9 @@ class Nav extends React.Component {
         )
       })
       const menuStyle = active ? { width: '300px', height: '200px' } : { width: '300px' }
+      const rotateStyle = collapsed
+        ? { left: '120px', transform: 'rotate(90deg)' }
+        : { left: '320px', transform: 'rotate(-90deg)' }
       return (
         <div key={pathCategory}>
           <div className="tabs">
@@ -104,14 +108,15 @@ class Nav extends React.Component {
                     : { left: '0px', opacity: '0' }
                   : { left: `${offset}px`, opacity: '1' }
               }
-              className={`nav-item ${active}`}
+              className={`nav-item ${active} menu-category`}
             >
-              {item.category}
+                {item.category.toLowerCase().replace('_', ' ')}
             </div>
           </div>
           <div style={menuStyle} className="tab__content">
             <ul className="links">{links}</ul>
           </div>
+          <div style={rotateStyle} onClick={this.handleClick} className="collapse-button">&#9651;</div>
         </div>
       )
     })
@@ -120,12 +125,13 @@ class Nav extends React.Component {
   render () {
     const { collapsed } = this.state
     const rotateStyle = collapsed
-      ? { left: '120px', transform: 'rotate(0deg)' }
-      : { left: '320px', transform: 'rotate(-180deg)' }
+      ? { left: '120px', transform: 'rotate(90deg)' }
+      : { left: '320px', transform: 'rotate(-90deg)' }
     return (
       <div className="nav-wrapper">
         {this.renderNav()}
-        <svg
+        {/* <p style={rotateStyle} onClick={this.handleClick} className="svg nav-item collapse-button">&#9651;</p> */}
+        {/* <svg
           viewBox="0 0 100 100"
           style={rotateStyle}
           onClick={this.handleClick}
@@ -134,7 +140,7 @@ class Nav extends React.Component {
           width="30"
         >
           <polygon points="43,30 43,70 85,49" className="triangle" />
-        </svg>
+        </svg> */}
       </div>
     )
   }

@@ -7,7 +7,7 @@ function createMarkup (data) {
 
 export default withRouteData( ({ content }) => {
   return (<div className="content-area">
-    {content.path}
+    <p className="page-title">{content.path}</p>
     {content.data.map((item, index) => {
       if (item.type === 'image') {
         return (
@@ -16,7 +16,7 @@ export default withRouteData( ({ content }) => {
               src={`/img/${item.src}`}
               alt={item.src}
             />
-            <p>{item.caption}</p>
+            <p className="caption">{item.caption}</p>
           </div>
         )
       } else if (item.type === 'text') {
