@@ -23,7 +23,7 @@ const navItems = [
 class Nav extends React.Component {
   constructor () {
     super()
-    const locationArr = location.pathname.split('/')
+    const locationArr = window.location.pathname.split('/')
     const currentWork = locationArr.pop()
     const category = locationArr.pop()
     this.state = {
