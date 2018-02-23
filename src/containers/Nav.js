@@ -23,16 +23,24 @@ const navItems = [
 class Nav extends React.Component {
   constructor () {
     super()
+    this.state = {
+      collapsed: false,
+      currentCategory: null,
+      clickedCategory: null,
+      currentWork: null,
+      toggle: true,
+    }
+  }
+
+  componentDidMount = () => {
     const locationArr = window.location.pathname.split('/')
     const currentWork = locationArr.pop()
     const category = locationArr.pop()
-    this.state = {
-      collapsed: false,
+
+    this.setState({
       currentCategory: category,
-      clickedCategory: null,
       currentWork,
-      toggle: true,
-    }
+    })
   }
 
   handleClick = e => {
