@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { category_1 } from './pageData/category_1'
+import { category_2 } from './pageData/category_2'
+import { category_3 } from './pageData/category_3'
 
 export default {
   getSiteData: () => ({
@@ -12,8 +15,30 @@ export default {
         component: 'src/containers/Home',
       },
       {
-        path: '/about',
+        path: '/category_1',
         component: 'src/containers/About',
+        children: category_1.map( (content, index) => ({
+          path: `/work_${index+1}`,
+          component: 'src/containers/Page',
+          getData: () => ({content})
+        }))
+      },
+      {
+        path: '/category_2',
+        component: 'src/containers/About',
+        children: category_2.map( (content, index) => ({
+          path: `/work_${index+1}`,
+          component: 'src/containers/Page',
+          getData: () => ({content})
+        }))
+      },
+      {
+        path: '/category_3',
+        children: category_3.map( (content, index) => ({
+          path: content.path,
+          component: 'src/containers/Page',
+          getData: () => ({content: content.data})
+        }))
       },
       {
         path: '/blog',
