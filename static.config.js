@@ -1,3 +1,4 @@
+import React from 'react'
 import axios from 'axios'
 import { category_1 } from './pageData/category_1'
 import { category_2 } from './pageData/category_2'
@@ -5,6 +6,7 @@ import { category_3 } from './pageData/category_3'
 import { home } from './pageData/home'
 
 export default {
+  siteRoot: 'https://boring-euler-fa3a3e.netlify.com',
   getSiteData: () => ({
     title: 'React Static',
   }),
@@ -47,4 +49,13 @@ export default {
       },
     ]
   },
+  Document: ({ Html, Head, Body, children, siteData, renderMeta }) => (
+    <Html lang="en-US">
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Body>{children}</Body>
+    </Html>
+  ),
 }

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-static'
+import { withRouter } from 'react-router'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { category_1_menu } from '../../pageData/category_1'
 import { category_2_menu } from '../../pageData/category_2'
 import { category_3_menu } from '../../pageData/category_3'
+
 
 const navItems = [
   {
@@ -54,7 +56,7 @@ class Nav extends React.Component {
   }
 
   renderNav = () => {
-    const locationArr = window.location.pathname.split('/')
+    const locationArr = this.props.location.pathname.split('/')
     const currentWork = locationArr[2] || null
     const currentCategory = locationArr[1] || navItems[0].category.toLowerCase()
     let offset = -100
@@ -92,9 +94,9 @@ class Nav extends React.Component {
               style={
                 collapsed
                   ? currentCategory === pathCategory
-                    ? { left: '0px', opacity: '1' }
-                    : { left: '0px', opacity: '0' }
-                  : { left: `${offset}px`, opacity: '1' }
+                    ? { transform: 'translate(0,0)', opacity: '1' }
+                    : { transform: 'translate(0,0)', opacity: '0' }
+                  : { transform: `translate(${offset}px, 0)`, opacity: '1' }
               }
               className={`nav-item ${active} menu-category`}
             >
@@ -102,7 +104,7 @@ class Nav extends React.Component {
             </div>
           </div>
           <div style={menuStyle} className="tab__content">
-            <ul className="links">{links}</ul>
+            <ul style={{gridTemplateColumns: `repeat(${navItems.length}, 1fr)`}} className="links">{links}</ul>
           </div>
           <div style={rotateStyle} onClick={this.handleClick} className="collapse-button">&#9651;</div>
         </div>
@@ -137,4 +139,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav
+export default withRouter(Nav)
