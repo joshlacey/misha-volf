@@ -23,7 +23,8 @@ html {
 
 body {
   background-color: #EDFAF9;
-  transition: backgroundColor 1s ease-in-out
+  transition: backgroundColor 1s ease-in-out;
+  margin: 0;
 }
 
 img {
@@ -115,13 +116,16 @@ p {
   letter-spacing: normal;
   line-height: 1.4;
   padding-left: 5px;
+  margin: 0;
 }
 
-.footer {
+footer {
   font-size: 12px;
   line-height: normal;
   letter-spacing: normal;
   color: #fff;
+  background-color: grey;
+  height: 120px;
 }
 
 .nav-wrapper {
@@ -132,7 +136,7 @@ p {
 .content {
   z-index: -2;
   position: absolute;
-  top: 90px;
+  top: 120px;
 }
 
 .tabs > .nav-item {
@@ -196,6 +200,7 @@ p {
 
 .collapse-button{
   position: absolute;
+  cursor: pointer;
   display: inline;
   border-radius: 50px;
   transition: all 0.3s ease-in-out;

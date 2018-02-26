@@ -25,22 +25,9 @@ class Nav extends React.Component {
     super()
     this.state = {
       collapsed: true,
-      currentCategory: null,
       clickedCategory: null,
-      currentWork: null,
       toggle: true,
     }
-  }
-
-  componentDidMount = () => {
-    const locationArr = window.location.pathname.split('/')
-    const currentWork = locationArr.pop()
-    const category = locationArr.pop() || navItems[0].category.toLowerCase()
-
-    this.setState({
-      currentCategory: category,
-      currentWork,
-    })
   }
 
   handleClick = e => {
@@ -51,9 +38,7 @@ class Nav extends React.Component {
   }
 
   handleMenuClick = e => {
-    const { category } = e.target.dataset
     this.setState({
-      currentCategory: category,
       collapsed: true,
       clickedCategory: null,
       toggle: !this.state.toggle,
@@ -69,20 +54,23 @@ class Nav extends React.Component {
   }
 
   renderNav = () => {
+    const locationArr = window.location.pathname.split('/')
+    const currentWork = locationArr[2] || null
+    const currentCategory = locationArr[1] || navItems[0].category.toLowerCase()
     let offset = -100
-    const { currentCategory, collapsed, clickedCategory, currentWork } = this.state
+    const { collapsed, clickedCategory } = this.state
     return navItems.map(item => {
       offset += 100
       const pathCategory = item.category.toLowerCase()
       const active = clickedCategory === pathCategory ? 'active' : ''
       const links = item.menu.map(menuItem => {
+        console.log(currentCategory, pathCategory, menuItem.path, currentWork)
         if (currentCategory === pathCategory && menuItem.path === currentWork) {
           return null
         }
         return (
           <li key={menuItem.path}>
             <ReactRouterLink
-              data-category={pathCategory}
               onClick={this.handleMenuClick}
               to={`/${pathCategory}/${menuItem.path}`}
             >
@@ -128,20 +116,23 @@ class Nav extends React.Component {
       ? { left: '120px', transform: 'rotate(90deg)' }
       : { left: '320px', transform: 'rotate(-90deg)' }
     return (
-      <div className="nav-wrapper">
-        {this.renderNav()}
-        {/* <p style={rotateStyle} onClick={this.handleClick} className="svg nav-item collapse-button">&#9651;</p> */}
-        {/* <svg
-          viewBox="0 0 100 100"
-          style={rotateStyle}
-          onClick={this.handleClick}
-          className="svg nav-item collapse-button"
-          height="30"
-          width="30"
-        >
-          <polygon points="43,30 43,70 85,49" className="triangle" />
-        </svg> */}
+      <div>
+        <ReactRouterLink to="/"><div onClick={this.handleMenuClick} className="banner">Misha Volf</div></ReactRouterLink>
+        <div className="nav-wrapper">
+          {this.renderNav()}
+          {/* <svg
+            viewBox="0 0 100 100"
+            style={rotateStyle}
+            onClick={this.handleClick}
+            className="svg nav-item collapse-button"
+            height="30"
+            width="30"
+          >
+            <polygon points="43,30 43,70 85,49" className="triangle" />
+          </svg> */}
+        </div>
       </div>
+
     )
   }
 }
