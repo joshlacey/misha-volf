@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-static'
+import { withRouter } from 'react-router'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { category_1_menu } from '../../pageData/category_1'
 import { category_2_menu } from '../../pageData/category_2'
@@ -54,7 +55,7 @@ class Nav extends React.Component {
   }
 
   renderNav = () => {
-    const locationArr = window.location.pathname.split('/')
+    const locationArr = this.props.location.pathname.split('/')
     const currentWork = locationArr[2] || null
     const currentCategory = locationArr[1] || navItems[0].category.toLowerCase()
     let offset = -100
@@ -137,4 +138,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav
+export default withRouter(Nav)
