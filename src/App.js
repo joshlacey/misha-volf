@@ -11,17 +11,15 @@ import './app.css'
 
 const App = () => (
   <Router>
-    <div>
-      <div>
+      <div style={{height: '100%'}}>
         <div className="wrapper">
           <Nav />
           <div className="content">
             <Routes />
           </div>
         </div>
+        <Footer />
       </div>
-      {/* <Footer /> */}
-    </div>
   </Router>
 )
 

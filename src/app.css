@@ -1,5 +1,6 @@
 
 html {
+  height: 100%;
   font-size: 22px;
   letter-spacing: .02em;
   line-height: 1;
@@ -8,9 +9,14 @@ html {
 }
 
 body {
+  height: 100%;
   background-color: #EDFAF9;
   transition: backgroundColor 1s ease-in-out;
   margin: 0;
+}
+
+#root {
+  height: 100%;
 }
 
 img {
@@ -86,6 +92,8 @@ p {
 }
 
 footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   font-size: 12px;
   line-height: normal;
   letter-spacing: normal;
@@ -94,15 +102,27 @@ footer {
   height: 120px;
 }
 
+.social-container {
+  grid-column: 2/3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  justify-items: center;
+}
+
+.social-container > a > svg {
+  width: 2rem;
+
+}
+
 .nav-wrapper {
-  position: absolute;
-  top: 4rem;
+  position: relative;
+  height: 120px;
 }
 
 .content {
   z-index: -2;
-  position: absolute;
-  top: 120px;
+  padding-bottom: 120px;
 }
 
 .tabs > .nav-item {
@@ -128,9 +148,11 @@ footer {
   transform: translateY(100%);
   transition-duration: 0.25s;
 }
+
 .tabs > .nav-item.active {
   color: #fff;
 }
+
 .tabs > .nav-item.active:before {
   transition-duration: 0.5s;
   background-color: rgba(191,190,203,0.9);
@@ -150,11 +172,10 @@ footer {
 }
 
 .links {
-  display: grid;
   list-style: none;
-  /* padding: 5px;
-  position: absolute; */
-  /* top: 30px; */
+  padding: 5px;
+  position: absolute;
+  top: 30px;
 }
 
 .links a {

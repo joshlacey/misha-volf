@@ -61,7 +61,7 @@ class Nav extends React.Component {
     const currentCategory = locationArr[1] || navItems[0].category.toLowerCase()
     let offset = -100
     const { collapsed, clickedCategory } = this.state
-    return navItems.map(item => {
+    const navCategories = navItems.map(item => {
       offset += 100
       const pathCategory = item.category.toLowerCase()
       const active = clickedCategory === pathCategory ? 'active' : ''
@@ -82,9 +82,6 @@ class Nav extends React.Component {
         )
       })
       const menuStyle = active ? { width: '300px', height: '200px' } : { width: '300px' }
-      const rotateStyle = collapsed
-        ? { left: '120px', transform: 'rotate(90deg)' }
-        : { left: '320px', transform: 'rotate(-90deg)' }
       return (
         <div key={pathCategory}>
           <div className="tabs">
@@ -104,23 +101,27 @@ class Nav extends React.Component {
             </div>
           </div>
           <div style={menuStyle} className="tab__content">
-            <ul style={{gridTemplateColumns: `repeat(${navItems.length}, 1fr)`}} className="links">{links}</ul>
+            <ul className="links">{links}</ul>
           </div>
-          <div style={rotateStyle} onClick={this.handleClick} className="collapse-button">&#9651;</div>
+
         </div>
       )
     })
-  }
-
-  render () {
-    const { collapsed } = this.state
     const rotateStyle = collapsed
       ? { left: '120px', transform: 'rotate(90deg)' }
       : { left: '320px', transform: 'rotate(-90deg)' }
     return (
-      <div>
+      <div style={{top: '100px', position: 'absolute'}}>
+        {navCategories}
+        <div style={rotateStyle} onClick={this.handleClick} className="collapse-button">&#9651;</div>
+      </div>
+    )
+  }
+
+  render () {
+    return (
+      <div className="nav-wrapper">
         <ReactRouterLink to="/"><div onClick={this.handleMenuClick} className="banner">Misha Volf</div></ReactRouterLink>
-        <div className="nav-wrapper">
           {this.renderNav()}
           {/* <svg
             viewBox="0 0 100 100"
@@ -132,7 +133,6 @@ class Nav extends React.Component {
           >
             <polygon points="43,30 43,70 85,49" className="triangle" />
           </svg> */}
-        </div>
       </div>
 
     )
