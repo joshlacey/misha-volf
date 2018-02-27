@@ -4,7 +4,7 @@ export const category_1 = [
     data: [
       {
         type: 'image',
-        src: 'test_image.jpg',
+        src: 'copper_chair_rear.jpg',
         caption: 'This is a caption',
       },
       {
