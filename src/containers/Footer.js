@@ -52,7 +52,7 @@ export default () => (
                       rx="4"
                     />
                     <text
-                      fontFamily="MyriadPro-Regular, Myriad Pro"
+                      // fontFamily="MyriadPro-Regular, Myriad Pro"
                       fontSize="18"
                       fontWeight="normal"
                       letterSpacing="-0.899999976"
@@ -87,7 +87,7 @@ export default () => (
                     />
                     <text
                       id="in"
-                      fontFamily="MyriadPro-Semibold, Myriad Pro"
+                      // fontFamily="MyriadPro-Semibold, Myriad Pro"
                       fontSize="18"
                       fontWeight="500"
                       letterSpacing="-0.899999976"

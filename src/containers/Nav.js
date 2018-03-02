@@ -30,24 +30,32 @@ const navItems = [
   },
 ]
 
-const spacing = 30
+const defaultSpacing = 30
 
-const totalMenuWidth = navItems.reduce((acc, curr) => (acc + curr.width), 0) + ((navItems.length - 1) * spacing)
+const defaultTotalMenuWidth = navItems.reduce((acc, curr) => (acc + curr.width), 0) + ((navItems.length - 1) * defaultSpacing)
 
 class Nav extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       collapsed: true,
       clickedCategory: null,
       toggle: true,
       currentWork: null,
-      currentCategory: null
+      currentCategory: null,
+      spacing: defaultSpacing,
+      totalMenuWidth: defaultTotalMenuWidth,
     }
+    console.log(props)
   }
 
 componentDidMount = () => {
   this.setMenuSelection(this.props)
+  if(window.outerWidth < 600){
+    const spacing = 10
+    const totalMenuWidth = navItems.reduce((acc, curr) => (acc + curr.width), 0) + ((navItems.length - 1) * spacing)
+    this.setState({spacing, totalMenuWidth})
+  }
 }
 
 componentWillReceiveProps = (nextProps) => {
@@ -86,7 +94,7 @@ setMenuSelection = (nextProps) => {
 
   renderNav = () => {
     let previousItemRemWidth = 0
-    const { currentWork, currentCategory, collapsed, clickedCategory } = this.state
+    const { currentWork, currentCategory, collapsed, clickedCategory, totalMenuWidth, spacing } = this.state
     return navItems.map((item, index) => {
       const pathCategory = item.category.toLowerCase()
       const active = clickedCategory === pathCategory ? 'active' : ''
@@ -138,7 +146,7 @@ setMenuSelection = (nextProps) => {
   render () {
     const rotateStyle = this.state.collapsed
       ? { left: '120px', transform: 'rotate(90deg)' }
-      : { left: `${totalMenuWidth}px`, transform: 'rotate(-90deg)' }
+      : { left: `${this.state.totalMenuWidth}px`, transform: 'rotate(-90deg)' }
     return (
       <div className="nav-wrapper">
         <ReactRouterLink to="/"><div onClick={this.handleMenuClick} className="banner">Misha Volf</div></ReactRouterLink>
