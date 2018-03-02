@@ -106,8 +106,7 @@ setMenuSelection = (nextProps) => {
           </li>
         )
       })
-      console.log((links.length + 1) * 52 + 10, links.length)
-      const menuStyle = active ? { width: `${totalMenuWidth}px`, height: `${(links.length + 1) * 52 + 10}px` } : { width: `${totalMenuWidth}px` }
+      const menuStyle = active ? { width: `${totalMenuWidth}px`, height: `${(links.length + 2) * 52 + 10}px` } : { width: `${totalMenuWidth}px` }
       if (index !== 0) previousItemRemWidth += navItems[index-1].width + spacing
       return (
         <div key={pathCategory}>
