@@ -220,6 +220,24 @@ p, ul {
 }
 
 
+@media screen and (max-width: 320px) {
+    .wrapper {
+      width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
 
 /**NEW**/
 
