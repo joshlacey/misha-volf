@@ -104,8 +104,8 @@ export default () => (
           </g>
         </svg>
       </a>
-      <hr style={{gridColumn: '1/4', width: '100%'}}/>
-      <p style={{gridColumn: '2/3'}}>2018</p>
+      <hr style={{gridColumn: '1/4', width: '100%', borderWidth: '0', backgroundColor: '#fff', height: '1px', margin: '0'}}/>
+      <p style={{gridColumn: '2/3', color: 'white', fontSize: '.7rem'}}>&#169; 2018</p>
     </div>
   </footer>
 )

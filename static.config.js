@@ -18,7 +18,7 @@ export default {
         getData: () => ({ content: home }),
       },
       {
-        path: '/category_1',
+        path: '/ux',
         component: 'src/containers/About',
         children: category_1.map( (content, index) => ({
           path: content.path,
@@ -27,7 +27,7 @@ export default {
         }))
       },
       {
-        path: '/category_2',
+        path: '/projects',
         component: 'src/containers/About',
         children: category_2.map( (content, index) => ({
           path: content.path,
@@ -36,7 +36,15 @@ export default {
         }))
       },
       {
-        path: '/category_3',
+        path: '/objects',
+        children: category_3.map( (content, index) => ({
+          path: content.path,
+          component: 'src/containers/Page',
+          getData: () => ({ content })
+        }))
+      },
+      {
+        path: '/cv',
         children: category_3.map( (content, index) => ({
           path: content.path,
           component: 'src/containers/Page',
