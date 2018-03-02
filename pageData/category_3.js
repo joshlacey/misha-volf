@@ -13,8 +13,8 @@ export const category_3 = [
       },
       {
         type: 'video',
-        embed_src: `<iframe src="https://player.vimeo.com/video/221645516?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    <p><a href="https://vimeo.com/221645516">Interior Designer Antonino Buzzetta on Taking Risks with Color</a> from <a href="https://vimeo.com/metropolisbenmoore">Metropolis + Benjamin Moore</a> on <a href="https://vimeo.com">Vimeo</a>.</p>`,
+        url: 'https://player.vimeo.com/video/221645516?title=0&byline=0&portrait=0',
+        caption: 'some video captions here',
       },
     ]
   },
@@ -32,8 +32,8 @@ export const category_3 = [
       },
       {
         type: 'video',
-        embed_src: `<iframe src="https://player.vimeo.com/video/221645516?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    <p><a href="https://vimeo.com/221645516">Interior Designer Antonino Buzzetta on Taking Risks with Color</a> from <a href="https://vimeo.com/metropolisbenmoore">Metropolis + Benjamin Moore</a> on <a href="https://vimeo.com">Vimeo</a>.</p>`,
+        url: 'https://player.vimeo.com/video/221645516?title=0&byline=0&portrait=0',
+        caption: 'some video captions here',
       },
     ]
   },
@@ -51,8 +51,8 @@ export const category_3 = [
       },
       {
         type: 'video',
-        embed_src: `<iframe src="https://player.vimeo.com/video/221645516?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    <p><a href="https://vimeo.com/221645516">Interior Designer Antonino Buzzetta on Taking Risks with Color</a> from <a href="https://vimeo.com/metropolisbenmoore">Metropolis + Benjamin Moore</a> on <a href="https://vimeo.com">Vimeo</a>.</p>`,
+        url: 'https://player.vimeo.com/video/221645516?title=0&byline=0&portrait=0',
+        caption: 'some video captions here',
       },
     ]
   },

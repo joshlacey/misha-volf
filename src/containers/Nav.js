@@ -41,12 +41,12 @@ class Nav extends React.Component {
       collapsed: true,
       clickedCategory: null,
       toggle: true,
+      rem: 20,
       currentWork: null,
       currentCategory: null,
       spacing: defaultSpacing,
       totalMenuWidth: defaultTotalMenuWidth,
     }
-    console.log(props)
   }
 
 componentDidMount = () => {
@@ -54,6 +54,7 @@ componentDidMount = () => {
   if(window.outerWidth < 600){
     const spacing = 10
     const totalMenuWidth = navItems.reduce((acc, curr) => (acc + curr.width), 0) + ((navItems.length - 1) * spacing)
+    const rem = 16
     this.setState({spacing, totalMenuWidth})
   }
 }
@@ -93,8 +94,8 @@ setMenuSelection = (nextProps) => {
   }
 
   renderNav = () => {
-    let previousItemRemWidth = 0
-    const { currentWork, currentCategory, collapsed, clickedCategory, totalMenuWidth, spacing } = this.state
+    let previousItemRemWidth = 5
+    const { currentWork, currentCategory, collapsed, clickedCategory, totalMenuWidth, spacing, rem } = this.state
     return navItems.map((item, index) => {
       const pathCategory = item.category.toLowerCase()
       const active = clickedCategory === pathCategory ? 'active' : ''
@@ -114,7 +115,8 @@ setMenuSelection = (nextProps) => {
           </li>
         )
       })
-      const menuStyle = active ? { width: `${totalMenuWidth}px`, height: `${(links.length + 2) * 52 + 10}px` } : { width: `${totalMenuWidth}px` }
+      console.log((links.length + 2) * (rem * 1.7) + 10, rem)
+      const menuStyle = active ? { width: `${totalMenuWidth}px`, height: `${(links.length + 2) * (rem * 2.2) + 10}px` } : { width: `${totalMenuWidth}px` }
       if (index !== 0) previousItemRemWidth += navItems[index-1].width + spacing
       return (
         <div key={pathCategory}>
@@ -135,7 +137,7 @@ setMenuSelection = (nextProps) => {
             </div>
           </div>
           <div style={menuStyle} className="tab__content">
-            <ul className="links">{links}</ul>
+            <ul style={{top: `${rem * 2.1 * 2}px`}} className="links">{links}</ul>
           </div>
 
         </div>
@@ -144,11 +146,14 @@ setMenuSelection = (nextProps) => {
   }
 
   render () {
+    console.log(this.state.rem * 2.3)
+    const height = this.state.rem * 2.3 * 4
+    console.log(height)
     const rotateStyle = this.state.collapsed
       ? { left: '120px', transform: 'rotate(90deg)' }
       : { left: `${this.state.totalMenuWidth}px`, transform: 'rotate(-90deg)' }
     return (
-      <div className="nav-wrapper">
+      <div style={{ height }} className="nav-wrapper">
         <ReactRouterLink to="/"><div onClick={this.handleMenuClick} className="banner">Misha Volf</div></ReactRouterLink>
           <div style={{top: '118px', position: 'absolute'}}>
             {this.renderNav()}

@@ -2,7 +2,7 @@
 
 html {
   height: 100%;
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: .02em;
   line-height: 1;
   color: #464646;
@@ -59,6 +59,21 @@ img {
   font-weight: bold;
 }
 
+.feature-image-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+  z-index: -1;
+  overflow: hidden;
+}
+
+.feature-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  max-width: unset;
+}
+
 p {
   font-size: 1rem;
   line-height: 1.4;
@@ -66,12 +81,18 @@ p {
   color: #464646;
 }
 
+.text {
+  padding: 15px 10px 0;
+}
+
 .caption {
   font-size: .9rem;
+  text-align: center;
   line-height: 1;
   letter-spacing: .02em;
   color: #464646;
   font-style: italic;
+  padding-top: 15px;
 }
 
 .menu-category {
@@ -130,6 +151,7 @@ footer {
 .nav-wrapper {
   position: relative;
   height: 192px;
+  /* padding: 0 5px; */
 }
 
 .content {
@@ -193,7 +215,6 @@ p, ul {
   list-style: none;
   padding-left: 5px;
   position: absolute;
-  top: 102px;
 }
 
 .links a {
@@ -210,13 +231,24 @@ p, ul {
   display: inline;
   border-radius: 50px;
   transition: all 0.5s ease-in-out;
-  color: rgb(200,201,212)
+  color: rgb(200,201,212);
 }
 
 .triangle{
   fill: transparent;
   stroke: #464646;
   stroke-width: 2px;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 
@@ -229,6 +261,9 @@ p, ul {
 @media screen and (max-width: 600px) {
   .wrapper {
     width: 100%;
+  }
+  html {
+    font-size: 16px;
   }
 }
 
