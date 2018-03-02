@@ -107,9 +107,10 @@ p {
 
 .menu-category:after {
   content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
+  position: absolute;
+  z-index: -1;
+  left:5px;
+  bottom: 5px;
   right:0;
   margin:auto;
   background:rgba(191,190,203,0.3);
@@ -162,12 +163,19 @@ footer {
 .tabs > .nav-item {
   transition-duration: 1s;
   padding: 0;
+  z-index: 1;
   position: absolute;
   overflow: hidden;
   cursor: pointer;
   color: #464646;
-  height: 22px;
+  height: 20px;
 }
+
+.tabs > .nav-item {
+  padding: 0 5px;
+  left: -5px;
+}
+
 
 .tabs > .nav-item:before {
   z-index: -1;
@@ -197,7 +205,7 @@ footer {
 .tab__content {
   position: absolute;
   background-color: rgba(191,190,203,0.9);
-  top: 22px;
+  top: 1rem;
   overflow: hidden;
   height: 0px;
   -webkit-transition: height 1s;
