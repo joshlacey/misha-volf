@@ -8,6 +8,14 @@
           caption [alignment,text]
  * */
 
+/*
+  categoryTemplate contains a list of pages. Each page has a path name, which
+  becomes the page title, and a list of data. Each item in the list of data
+  must have a type and must also have corresponding information for each option
+  corresponding to it. This excludes any alignment option. These have a default
+  value and do not otherwise need to be specified.
+ */
+
 export const categoryTemplate = [
   {
     path: 'first_path', // becomes page title
@@ -48,6 +56,9 @@ export const categoryTemplate = [
   },
 ]
 
-export const category_template_menu = [
-  {path: 'first_path'},
-]
+/*
+  You must specify each page path also in the list below. These are imported
+  into the navigation to create the menu options.
+*/
+
+export const category_template_menu = [{ path: 'first_path' }]

@@ -8,14 +8,16 @@
           caption [alignment,text]
  * */
 
+
+
 export const category_1 = [
   {
     path: 'work_1',
     data: [
       {
         type: 'heroImage',
-        src: 'test_image.jpg',
-        caption: 'This is a caption',
+        src: 'copper_chair_rear.jpg',
+        caption: 'some caption'
       },
       {
         type: 'paragraph',
