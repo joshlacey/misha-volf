@@ -2,11 +2,11 @@
 
 html {
   height: 100%;
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: .02em;
   line-height: 1;
   color: #464646;
-  font-family: 'Muli', sans-serif;
+  font-family: 'Ariel', sans-serif;
 }
 
 body {
@@ -14,6 +14,18 @@ body {
   background-color: #EDFAF9;
   transition: backgroundColor 1s ease-in-out;
   margin: 0;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
 }
 
 #root {
@@ -44,14 +56,14 @@ img {
   color: #000;
 }
 
-.h2-dek {
+.dek {
   font-size: 1.25rem;
   line-height: 1.2;
   letter-spacing: .02em;
   color: #464646;
 }
 
-.h3-sub-heading {
+.sub-heading {
   font-size: 1.25rem;
   line-height: 1.2;
   letter-spacing: .03333em;
@@ -81,6 +93,12 @@ p {
   color: #464646;
 }
 
+p, ul {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  margin: 0;
+}
+
 .text {
   padding: 15px 10px 0;
 }
@@ -95,8 +113,16 @@ p {
   padding-top: 15px;
 }
 
+/***Navigation***/
+
+.nav-wrapper {
+  position: relative;
+  height: 192px;
+  /* padding: 0 5px; */
+}
+
 .menu-category {
-  font-size: .9rem;
+  font-size: 1rem;
   letter-spacing: .02em;
   line-height: 1;
   color: #464646;
@@ -149,11 +175,7 @@ footer {
   padding: 25px;
 }
 
-.nav-wrapper {
-  position: relative;
-  height: 192px;
-  /* padding: 0 5px; */
-}
+
 
 .content {
   z-index: -2;
@@ -188,7 +210,7 @@ footer {
   background-color: rgba(191,190,203,0.3);
   -webkit-transform: translateY(100%);
   transform: translateY(100%);
-  transition-duration: 0.7s;
+  transition-duration: 0.5s;
 }
 
 .tabs > .nav-item.active {
@@ -213,12 +235,6 @@ footer {
 	transition: height 1s;
 }
 
-p, ul {
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  margin: 0;
-}
-
 .links {
   list-style: none;
   padding-left: 5px;
@@ -233,20 +249,22 @@ p, ul {
   letter-spacing: normal;
 }
 
-.collapse-button{
+.collapse-button {
   position: absolute;
   cursor: pointer;
   display: inline;
   border-radius: 50px;
-  transition: all 0.5s ease-in-out;
+  transition: left .7s, transform 1s ease-in-out;
   color: rgb(200,201,212);
 }
 
-.triangle{
+.triangle {
   fill: transparent;
   stroke: #464646;
   stroke-width: 2px;
 }
+
+/***Video***/
 
 .player-wrapper {
   position: relative;
@@ -259,34 +277,28 @@ p, ul {
   left: 0;
 }
 
+/***Responsive Styling***/
 
 @media screen and (max-width: 320px) {
     .wrapper {
       width: 100%;
     }
+    html {
+      font-size: 15px;
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) and (min-width: 320px) {
   .wrapper {
     width: 100%;
   }
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 600px) {
   .wrapper {
     width: 100%;
   }
 }
-
-
-/**NEW**/
-
-
-/* .collapse-button {
-  transition-duration: 0.5s;
-  position: absolute;
-  height: 30px;
-} */

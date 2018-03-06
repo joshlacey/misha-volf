@@ -9,18 +9,34 @@ import Routes from 'react-static-routes'
 
 import './app.css'
 
-const App = () => (
-  <Router>
-      <div style={{height: '100%'}}>
-        <div className="wrapper">
-          <Nav />
-          <div className="content">
-            <Routes />
+class App extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      menuClosed: null,
+    }
+  }
+
+  handleClickOutsideNav = e => {
+    const isNavigation = !!e.target.dataset.nav
+    this.setState({ menuClosed: !isNavigation })
+  }
+
+  render () {
+    return (
+      <Router>
+        <div style={{ height: '100%' }}>
+          <div onClick={this.handleClickOutsideNav} className="wrapper">
+            <Nav menuClosed={this.state.menuClosed} />
+            <div className="content">
+              <Routes />
+            </div>
           </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-  </Router>
-)
+      </Router>
+    )
+  }
+}
 
 export default hot(module)(App)
